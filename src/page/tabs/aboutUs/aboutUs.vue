@@ -1,0 +1,159 @@
+<template>
+  <div class="aboutUs">
+    <div class="aboutUs_header common_header" :class="$store.state.isIphoneX&&'iphoneX_common_header'">
+      <div class="title">
+        {{$t('aboutUs')}}
+      </div>
+    </div>
+    <div class="aboutUs_content" v-if="JSON.stringify(companyData)!=='{}'" :class="$store.state.isIphoneX&&'iphoneX_common_content'">
+      <div class="about_card">
+        <div class="logo">
+          <div class="company_logo" :style="{'background-image':'url('+hostUrl+companyData.imgs+')'}"></div>
+        </div>
+        <div class="company_text">
+          {{companyData.description}}
+        </div>
+        <div class="company_desc">
+          <mt-cell :title="companyData.contactName">
+            <span slot="icon" class="icon_span">
+              <i class="fas fa-user"></i>
+            </span>
+          </mt-cell>
+          <mt-cell :title="companyData.contactPhone">
+            <span slot="icon" class="icon_span">
+              <i class="fas fa-mobile-alt"></i>
+            </span>
+          </mt-cell>
+          <mt-cell :title="companyData.contactEmail">
+            <span slot="icon" class="icon_span">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </mt-cell>
+          <mt-cell :title="companyData.contactAddr">
+            <span slot="icon" class="icon_span">
+              <i class="fas fa-map-marker"></i>
+            </span>
+          </mt-cell>
+        </div>
+        <div class="btn_div">
+          <div class="btn" @click="goContactUs">{{$t('concatUs')}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "aboutUs",
+  data() {
+    return {
+      companyData: {},
+      hostUrl: localStorage.getItem("img_url") || ""
+    };
+  },
+  mounted() {
+    this.getCompanyData();
+  },
+  methods: {
+    goContactUs() {
+      window.location.href =
+        "uniwebview://contact?phone=" + this.companyData.contactPhone;
+    },
+    getCompanyData() {
+      this.$Get(this.$api.queryCompany, {}).then(res => {
+        if (res.code == 0) {
+          this.companyData = res.datas;
+        } else {
+          this.$cusToast(res.msg || "Fail");
+        }
+      });
+    }
+  }
+};
+</script>
+
+<style lang="less">
+.aboutUs {
+  height: 100%;
+  .aboutUs_header {
+    position: relative;
+    // height: 60px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e1dddc;
+    .title {
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      bottom: 0;
+      text-align: center;
+      line-height: 40px;
+      color: #000;
+      font-size: 24px;
+    }
+  }
+  .aboutUs_content {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    .about_card {
+      border-radius: 2px;
+      margin:12px;
+      background: #fff;
+      box-sizing: border-box;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      .logo {
+        padding: 1.5vh 1.5vh 0 1.5vh;
+        .company_logo {
+          width: 100%;
+          padding-bottom: 50%;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          border-radius: 2vh;
+        }
+      }
+      .company_text {
+        padding: 13px 16px 14px;
+        font-size: 2vh;
+        line-height: 3vh;
+        word-break: break-all;
+      }
+      .company_desc {
+        .mint-cell-wrapper {
+          .mint-cell-title {
+            position: relative;
+            .icon_span {
+              font-size: 20px;
+              display: inline-block;
+              width: 40px;
+              vertical-align: middle;
+              text-align: center;
+            }
+          }
+          .mint-cell-text {
+            width: calc(100% - 50px);
+            display: inline-block;
+            word-break: break-all;
+            line-height: 3vh;
+          }
+        }
+      }
+      .btn_div {
+        padding: 16px;
+        .btn {
+          color: #fff;
+          background-color: #000;
+          border-radius: 4px;
+          text-align: center;
+          padding: 1.5vh;
+        }
+      }
+    }
+  }
+}
+</style>

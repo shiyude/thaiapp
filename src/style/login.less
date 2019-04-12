@@ -1,0 +1,119 @@
+.sign_up_in {
+  overflow-y: auto;
+  .sign_up_in_content {
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, #115c81, #3babb6);
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, top, from(#115c81), to(#3babb6));
+    /* Safari 5.1+, Chrome 10+ */
+    background: -webkit-linear-gradient(top, #115c81, #3babb6);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #115c81, #3babb6);
+    /* default */
+    background: linear-gradient(top, #115c81, #3babb6);
+    background-color: #115c81;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    min-height: 100%;
+    position: relative;
+    .sign_up_in_top {
+      color: #fff;
+      margin-top: 2vh;
+      .sign_up_in_page_title {
+        font-size: 16px;
+        font-family: GreycliffCF-Light;
+      }
+      .sign_up_in_logo {
+        height: 20vw;
+        width: 20vw;
+       
+        margin: 2vh 0;
+        img{
+          height:100%;
+          width:100%;
+        }
+      }
+      .sign_up_in_app_name{
+        font-family: GreycliffCF-Bold;
+      }
+    }
+    .form_div {
+      &::before {
+        content: "";
+        display: table;
+      }
+      margin-top:15px;
+      .code_btn,.s_text{
+        font-size:16px;
+        color:#fff;
+        display: block;
+        width:100px;
+        text-align: center;
+        font-family: GreycliffCF-Light;
+      }
+      .mint-field {
+        margin: 2vw 0;
+        background-color: transparent;
+        border-bottom: 1px solid #6ab3c1;
+        min-height:40px;
+        .mint-cell-wrapper {
+          background-image: none;
+          font-size:14px;
+        }
+        input {
+          background-color: transparent !important;
+          color: #fff !important;
+          font-family: GreycliffCF-Light;
+          font-size:2.2vh;
+        }
+        ::-webkit-input-placeholder {
+          /* WebKit, Blink, Edge */
+          color: #6ab3c1;
+        }
+        :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #6ab3c1;
+        }
+        ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #6ab3c1;
+        }
+        :-ms-input-placeholder {
+          /* Internet Explorer 10-11 */
+          color: #6ab3c1;
+        }
+      }
+      .sign_up_in_btn {
+        margin: 2vh 0;
+        background-color: #fff;
+        font-size: 16px;
+        color: #3a3b3a;
+        padding: 2vw;
+        border-radius: 5vw;
+        text-align: center;
+        font-family: GreycliffCF-Light;
+      }
+      .sign_up_in_command {
+        text-align: center;
+        color: #6ab3c1;
+        line-height: 4vh;
+        font-size: 14px;
+        margin-bottom: 40px;
+        font-family: GreycliffCF-Light;
+        span {
+          color: #fff;
+        }
+      }
+    }
+    .copyright_text {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #fff;
+      font-family: GreycliffCF-Light;
+    }
+  }
+}
